@@ -1,6 +1,11 @@
 
 public class EsercizioUno
 {
+	/*
+	Si progetti un DFA che riconosca nel linguaggio L={0,1}
+	le stringhe in cui compaiono almeno tre zeri 
+	consecutivi
+	*/
     public static boolean scan(String s)
     {
 	int state = 0;

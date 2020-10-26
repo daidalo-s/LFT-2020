@@ -11,34 +11,36 @@ public class NomeEsercizio {
 	    switch (state) {
 	    case 0:
 		if (condizione)
-		    state = 1;
+		    state = ;
 		else if (condizione)
-		    state = 0;
+		    state = ;
 		else
 		    state = -1;
 		break;
 
 	    case 1:
 		if (condizione)
-		    state = 2;
+		    state = ;
 		else if (condizione)
-		    state = 0;
+		    state = ;
 		else
 		    state = -1;
 		break;
 
 	    case 2:
 		if (condizione)
-		    state = 3;
+		    state = ;
 		else if (condizione)
-		    state = 0;
+		    state = ;
 		else
 		    state = -1;
 		break;
 
 	    case 3:
 		if (condizione)
-		    state = 3;
+		    state = ;
+		else if (condizione)
+			state = ;
 		else
 		    state = -1;
 		break;

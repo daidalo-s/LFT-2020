@@ -5,7 +5,8 @@ public class EsercizioUno_Quattro {
 	Numero pari --> A-K
 	Numero dispari --> L-Z
 	Il numero di matricola può contenere un numero qualsiasi di cifre, così come il
-	cognome
+	cognome.
+	Supporta anche trattini e apostrofi
 	*/
 	public static boolean scan(String s)
     {

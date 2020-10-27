@@ -16,10 +16,10 @@ public class EsercizioUno_Cinque {
 	    switch (state) {
 	    case 0:
 	    //se A-K vado a 1
-		if ((int)ch >= 65 && (int)ch <= 75)
+		if (ch >= 65 && ch <= 75)
 		    state = 1;
 		//se L-Z vado a 2
-		else if ((int)ch >= 76 && (int)ch <= 90)
+		else if (ch >= 76 && ch <= 90)
 		    state = 2;
 		else
 		    state = -1;
@@ -27,7 +27,7 @@ public class EsercizioUno_Cinque {
 
 	    case 1:
 	    //rimango qua con le lettere minuscole
-		if ((int)ch >= 97 && (int)ch <= 122)
+		if (ch >= 97 && ch <= 122)
 		    state = 1;
 		//se numero pari vado a 3
 		else if (ch == '0' || ch == '2' || ch == '4' || ch == '6' || ch == '8')
@@ -41,7 +41,7 @@ public class EsercizioUno_Cinque {
 
 	    case 2:
 	    //rimango qua con le lettere minuscole
-		if ((int)ch >= 97 && (int)ch <= 122)
+		if (ch >= 97 && ch <= 122)
 		    state = 2;
 		//se numero dispari vado a 4
 		else if (ch == '1' || ch == '3' || ch == '5' || ch == '7' || ch == '9')

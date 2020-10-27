@@ -19,7 +19,7 @@ public class EsercizioUno_Quattro {
 	    switch (state) {
 	    case 0:
 	    //se spazio rimango sempre in 0
-	    if ((int)ch == 32)
+	    if (ch == 32)
 	    	state = 0;
 	    //se pari vado in 1
 		else if (ch == '0' || ch == '2' || ch == '4' || ch == '6' || ch == '8')
@@ -40,10 +40,10 @@ public class EsercizioUno_Quattro {
 		else if (ch == '1' || ch == '3' || ch == '5' || ch == '7' || ch == '9')
 		    state = 2;
 		//se ho uno spazio vado a 4
-		else if ((int)ch == 32)
+		else if (ch == 32)
 			state = 4;
 		//se lettera maiuscola vado a 5
-		else if ((int)ch >= 65 && (int)ch <= 75)
+		else if (ch >= 65 && ch <= 75)
 			state = 5;
 		else
 		    state = -1;
@@ -57,10 +57,10 @@ public class EsercizioUno_Quattro {
 		else if (ch == '0' || ch == '2' || ch == '4' || ch == '6' || ch == '8')
 		    state = 1;
 		//se spazio vado in 3
-		else if ((int)ch == 32)
+		else if (ch == 32)
 			state = 3;
 		//se lettera maiuscola vado a 5
-		else if ((int)ch >= 76 && (int)ch <= 90)
+		else if (ch >= 76 && ch <= 90)
 			state = 5;
 		else
 		    state = -1;
@@ -68,10 +68,10 @@ public class EsercizioUno_Quattro {
 
 	    case 3:
 	    //se lettera vado in 5
-		if ((int)ch >= 76 && (int)ch <= 90)
+		if (ch >= 76 && ch <= 90)
 		    state = 5;
 		//se ho spazi continuo a rimanere qua
-		else if ((int)ch == 32)
+		else if (ch == 32)
 			state = 3;
 		else
 		    state = -1;
@@ -79,10 +79,10 @@ public class EsercizioUno_Quattro {
 
 		case 4:
 		//se lettera maiuscola vado in 5
-		if ((int)ch >= 65 && (int)ch <= 75) 
+		if (ch >= 65 && ch <= 75) 
 			state = 5;
 		//se continuo con gli spazi rimango qua
-		else if ((int)ch == 32)
+		else if (ch == 32)
 			state = 4;
 		else 
 			state = -1;
@@ -90,10 +90,10 @@ public class EsercizioUno_Quattro {
 
 		case 5:
 		//continuo a rimanere qua se lettere minuscole
-		if ((int)ch >= 97 && (int)ch <= 122)
+		if (ch >= 97 && ch <= 122)
 			state = 5; 
 		//se trovo spazio, apostrofo o trattino vado a 6
-		else if ((int)ch == 32 || (int)ch == 39 || (int)ch == 45)
+		else if (ch == 32 || ch == 39 || ch == 45)
 			state = 6;
 		else 
 			state = -1;
@@ -101,10 +101,10 @@ public class EsercizioUno_Quattro {
 
 		case 6:
 		//se continuo a trovare spazi rimango qua
-		if ((int)ch == 32)
+		if (ch == 32)
 			state = 6;
 		//se trovo qualsiasi ettera maiuscola torno a 5
-		else if ((int)ch >= 65 && (int)ch <= 90)
+		else if (ch >= 65 && ch <= 90)
 			state = 5;
 		else 
 			state = -1;

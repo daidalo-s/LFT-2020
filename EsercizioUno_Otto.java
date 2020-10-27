@@ -14,7 +14,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'L')
 		    state = 1;
 		//se Sigma-L vado a 8
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 76)
+		else if (ch >= 33 && ch <= 126 && ch != 76)
 		    state = 8;
 		else
 		    state = -1;
@@ -25,7 +25,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'o')
 		    state = 2;
 		//se Sigma-o vado a 9
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 111)
+		else if (ch >= 33 && ch <= 126 && ch != 111)
 		    state = 9;
 		else
 		    state = -1;
@@ -36,7 +36,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'r')
 		    state = 3;
 		//se Sigma-r vado a 10
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 114)
+		else if (ch >= 33 && ch <= 126 && ch != 114)
 		    state = 10;
 		else
 		    state = -1;
@@ -47,7 +47,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'e')
 		    state = 4;
 		//se Sigma-e vado a 11
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 101)
+		else if (ch >= 33 && ch <= 126 && ch != 101)
 			state = 11;
 		else
 		    state = -1;
@@ -58,7 +58,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'n')
 		    state = 5;
 		//se Sigma-n vado a 12
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 110)
+		else if (ch >= 33 && ch <= 126 && ch != 110)
 			state = 12;
 		else
 		    state = -1;
@@ -69,7 +69,7 @@ public class EsercizioUno_Otto {
 		if (ch == 'z')
 		    state = 6;
 		//se Sigma-z vado a 13
-		else if ((int)ch >= 33 && (int)ch <= 126 && (int)ch != 122)
+		else if (ch >= 33 && ch <= 126 && ch != 122)
 			state = 13;
 		else
 		    state = -1;
@@ -77,7 +77,7 @@ public class EsercizioUno_Otto {
 
 		case 6:
 		//Sigma e vado a 7
-		if ((int)ch >= 33 && (int)ch <= 126)
+		if (ch >= 33 && ch <= 126)
 		    state = 7;
 		else
 		    state = -1;

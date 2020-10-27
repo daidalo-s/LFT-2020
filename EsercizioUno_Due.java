@@ -19,10 +19,10 @@ public class EsercizioUno_Due {
 	    switch (state) {
 	    case 0:
 	    //lettere maiuscole/minuscole
-		if ((int)ch >= 65 && (int)ch <= 90 || (int)ch >= 97 && (int)ch <= 122)
+		if (ch >= 65 && ch <= 90 || ch >= 97 && ch <= 122)
 		    state = 2;
 		//underscore
-		else if ((int)ch == 95)
+		else if (ch == 95)
 		    state = 1;
 		else 
 			state = -1;
@@ -30,13 +30,13 @@ public class EsercizioUno_Due {
 
 		case 1:
 		//lettere maiuscole e minuscole 
-		if ((int)ch >= 65 && (int)ch <= 90 || (int)ch >= 97 && (int)ch <= 122)  
+		if (ch >= 65 && ch <= 90 || ch >= 97 && ch <= 122)  
 		    state = 2;
 		//numeri
-		else if ((int)ch >= 48 && (int)ch <= 57)
+		else if (ch >= 48 && ch <= 57)
 		    state = 2;
 		//underscore
-		else if ((int)ch == 95)
+		else if (ch == 95)
 			state = 1;
 		else 
 			state = -1;
@@ -44,12 +44,12 @@ public class EsercizioUno_Due {
 
 	    case 2:
 	    //lettere maiuscole e minuscole
-		if ((int)ch >= 65 && (int)ch <= 90 || (int)ch >= 97 && (int)ch <= 122) 
+		if (ch >= 65 && ch <= 90 || ch >= 97 && ch <= 122) 
 		    state = 2;
 		//numeri
-		else if ((int)ch == 32 || (int)ch >= 48 && (int)ch <= 57)
+		else if (ch == 32 || ch >= 48 && ch <= 57)
 		    state = 2;
-		else if ((int)ch == 95)
+		else if (ch == 95)
 			state = 2;
 		else
 			state = -1;

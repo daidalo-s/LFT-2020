@@ -11,7 +11,7 @@ public class EsercizioUno_Nove {
 	    switch (state) {
 	    case 0:
 	    //se / vado in 1
-		if ((int)ch == 47)
+		if (ch == '/')
 		    state = 1;
 		else
 		    state = -1;
@@ -19,7 +19,7 @@ public class EsercizioUno_Nove {
 
 	    case 1:
 	    //se * vado in 2
-		if ((int)ch == 42)
+		if (ch == '*')
 		    state = 2;
 		else
 		    state = -1;
@@ -27,10 +27,10 @@ public class EsercizioUno_Nove {
 
 	    case 2:
 	    //se a oppure / rimango in 2
-		if ((int)ch == 97 || (int)ch == 47)
+		if (ch == 'a' || ch == '/' )
 		    state = 2;
 		//se * passo a 3
-		else if ((int)ch == 42)
+		else if (ch == '*')
 		    state = 3;
 		else
 		    state = -1;
@@ -38,13 +38,13 @@ public class EsercizioUno_Nove {
 
 	    case 3:
 	    //se a vado a 2
-		if ((int)ch == 97)
+		if (ch == 'a')
 		    state = 2;
 		//se / vado a 4
-		else if ((int)ch == 47)
+		else if (ch == '/' )
 			state = 4;
 		//se * rimango in 3
-		else if ((int)ch == 42)
+		else if (ch == '*')
 			state = 3;
 		else
 		    state = -1;

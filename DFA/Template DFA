@@ -1,0 +1,57 @@
+public class NomeEsercizio {
+	
+	public static boolean scan(String s)
+    {
+	int state = 0;
+	int i = 0;
+
+	while (state >= 0 && i < s.length()) {
+	    final char ch = s.charAt(i++);
+
+	    switch (state) {
+	    case 0:
+		if (condizione)
+		    state = ;
+		else if (condizione)
+		    state = ;
+		else
+		    state = -1;
+		break;
+
+	    case 1:
+		if (condizione)
+		    state = ;
+		else if (condizione)
+		    state = ;
+		else
+		    state = -1;
+		break;
+
+	    case 2:
+		if (condizione)
+		    state = ;
+		else if (condizione)
+		    state = ;
+		else
+		    state = -1;
+		break;
+
+	    case 3:
+		if (condizione)
+		    state = ;
+		else if (condizione)
+			state = ;
+		else
+		    state = -1;
+		break;
+	    }
+	}
+	return state == statofinale;
+    }
+
+    public static void main(String[] args)
+    {
+	System.out.println(scan(args[0]) ? "OK" : "NOPE");
+    }
+
+}

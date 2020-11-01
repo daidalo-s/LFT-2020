@@ -25,7 +25,41 @@ public class Lexer {
                 peek = ' ';
                 return Token.not;
 
-	// ... gestire i casi di (, ), {, }, +, -, *, /, ; ... //
+            case '(':
+                peek = ' ';
+                return Token.lpt;
+
+            case ')':
+                peek = ' ';
+                return Token.rpt;
+            
+            case '{':
+                peek = ' ';
+                return Token.lpg;
+
+            case '}':
+                peek = ' ';
+                return Token.rpg;
+
+            case '+':
+                peek = ' ';
+                return Token.plus;
+
+            case '-':
+                peek = ' ';
+                return Token.minus;
+
+            case '*':
+                peek = ' ';
+                return Token.mult;
+
+            case '/':
+                peek = ' ';
+                return Token.div;
+
+            case ';':
+                peek = ' ';
+                return Token.semicolon;   
 
             case '&':
                 readch(br);
@@ -38,19 +72,100 @@ public class Lexer {
                     return null;
                 }
 
-	// ... gestire i casi di ||, <, >, <=, >=, ==, <>, = ... //
-          
+            case '|':
+                readch(br);
+                if (peek == '|') {
+                    peek = ' ';
+                    return Word.or;
+                } else {
+                    System.err.println("Erroneous character"
+                            + " after | : "  + peek );
+                    return null;
+                }
+
+            case '<':
+                readch(br);
+                if (peek == '=') {
+                    peek = ' ';
+                    return Word.le;
+                } else if (peek == '>') {
+                    peek = ' ';
+                    return Word.ne;
+                } else {
+                    return Word.lt;
+                } 
+
+            case '>':
+                readch(br);
+                if (peek == '=') {
+                    peek = ' ';
+                    return Word.ge;
+                } else {
+                    return Word.gt;
+                }
+
+            case '=':
+                readch(br);
+                if (peek == '=') {
+                    peek = ' ';
+                    return Word.eq;
+                } else {
+                    peek = ' ';
+                    return Token.assign;
+                }
+
             case (char)-1:
                 return new Token(Tag.EOF);
 
             default:
                 if (Character.isLetter(peek)) {
+                // ... gestire il caso degli identificatori e delle parole chiave //
+                    String s = " ";
+                    do {
+                        s == s + peek;
+                        readch(br);
+                    } while (Character.isLetter(peek));
 
-	// ... gestire il caso degli identificatori e delle parole chiave //
+                    switch (s) {
+                        case "cond":
+                            return Word.cond;
+
+                        case "when":
+                            return Word.when;
+
+                        case "then":
+                            return Word.then;
+
+                        case "else":
+                            return Word.elsetok;
+
+                        case "while":
+                            return Word.whiletok;
+
+                        case "do":
+                            return Word.dotok;
+
+                        case "seq":
+                            return Word.seq;
+
+                        case "print":
+                            return Word.print;
+
+                        case "read":
+                            return Word.read;
+
+                        default:
+                            return new Word(Tag.ID, s);
+                    }
 
                 } else if (Character.isDigit(peek)) {
-
-	// ... gestire il caso dei numeri ... //
+                    // ... gestire il caso dei numeri ... //
+                    String n = "";
+                    do {
+                        n = n + peek;
+                        readch(br);
+                    } while (Character.isDigit(peek));
+                    return new NumberTok(Tag.NUM, n);
 
                 } else {
                         System.err.println("Erroneous character: " 
@@ -62,7 +177,7 @@ public class Lexer {
 		
     public static void main(String[] args) {
         Lexer lex = new Lexer();
-        String path = "...path..."; // il percorso del file da leggere
+        String path = "/Users/lorenzo/Projects /LFT-2020/LEXER/test.txt"; 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Token tok;

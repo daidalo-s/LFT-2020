@@ -1,15 +1,10 @@
-pd 213123 while 
+d=300;
+print(* d t);
+cond when (> x y) then (= x 0) else (= y 0)
 
-	when
+while (conds<=printread) do conds = conds+1;
 
-	then
+x == y
+x==y
 
-	else
-
-	seq diocane
-
- else = == <> >=
-  
-  < >= 4+666 >   madonna cogliona && || 1*6 (
-    
-   
+a1 b2

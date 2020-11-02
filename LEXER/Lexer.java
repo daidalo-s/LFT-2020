@@ -110,7 +110,7 @@ public class Lexer {
                     peek = ' ';
                     return Word.eq;
                 } else {
-                    peek = ' ';
+                    //peek = ' ';
                     return Token.assign;
                 }
 
@@ -120,11 +120,11 @@ public class Lexer {
             default:
                 if (Character.isLetter(peek)) {
                 // ... gestire il caso degli identificatori e delle parole chiave //
-                    String s = " ";
+                    String s = "";
                     do {
-                        s == s + peek;
+                        s += peek;
                         readch(br);
-                    } while (Character.isLetter(peek));
+                    } while (Character.isLetter(peek) || Character.isDigit(peek));
 
                     switch (s) {
                         case "cond":
@@ -162,7 +162,7 @@ public class Lexer {
                     // ... gestire il caso dei numeri ... //
                     String n = "";
                     do {
-                        n = n + peek;
+                        n += peek;
                         readch(br);
                     } while (Character.isDigit(peek));
                     return new NumberTok(Tag.NUM, n);

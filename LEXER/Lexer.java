@@ -162,7 +162,7 @@ public class Lexer {
                     // ... gestire il caso dei numeri ... //
                     String n = "";
                     do {
-                        n += peek;
+                        n + = peek;
                         readch(br);
                     } while (Character.isDigit(peek));
                     return new NumberTok(Tag.NUM, n);

@@ -3,5 +3,10 @@ d=300; print(* d t); cond when (> x y) then (= x 0) else (= y 0) while (conds<=p
 a1 b2
 
 ciao12 while 123 = <=
-5 5 5 5 05
+5 5 5 5 
+5
+
+0
+130000
+d= 00 5
 

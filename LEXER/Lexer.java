@@ -162,14 +162,21 @@ public class Lexer {
                     // ... gestire il caso dei numeri ... //
                     String n = "";
                     do {
-                        n + = peek;
+                        n += peek;
                         readch(br);
                     } while (Character.isDigit(peek));
+                    //problema degli zeri
+                    char test=' ';
+                    try {
+                        if (n.charAt(0) == '0') test = n.charAt(1);
+                        if (test >= '0' && test <= '9'){
+                            System.err.println("Numeric constants cant start with zero");
+                            return null;
+                        } 
+                    } catch (StringIndexOutOfBoundsException errore) {/*faccio nulla*/}
                     return new NumberTok(Tag.NUM, n);
-
                 } else {
-                        System.err.println("Erroneous character: " 
-                                + peek );
+                        System.err.println("Erroneous character: " + peek );
                         return null;
                 }
          }

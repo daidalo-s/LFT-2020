@@ -6,7 +6,7 @@ Scarica git da https://git-scm.com/downloads (man mano che installi non cambiare
 Apri Git Bash che dovrebbe installarti l'installer al passo precedente.
 Naviga (con i soliti comandi cd/ls) fino a dove vuoi copiare il repo.
 Quando sei arrivato, apri il repo da browser, clicca sul tasto verde Code, copia il link che ti esce
-Torna sul terminale di prima e digita git clone ~link che hai copiato~
+Torna sul terminale di prima e digita git clone -link che hai copiato-
 
 3_Uso
 Un po' di comandi utili:

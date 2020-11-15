@@ -1,2 +1,2 @@
 # LFT-2020
-Ora la faccio un attimo
+1) INSTALLAZIONE

@@ -1,0 +1,14 @@
+d=300; print(* d t); cond when (> x y) then (= x 0) else (= y 0) while (conds<=printread) do conds = conds+1; x == y x==y
+
+a1 b2
+
+ciao12 while 123 = <=
+5 5 5 5 
+5
+
+0
+130000
+d= 0 
+5
+_abc
+

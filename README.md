@@ -1,2 +1,3 @@
 # LFT-2020
-1) INSTALLAZIONE
+1_Installazione
+

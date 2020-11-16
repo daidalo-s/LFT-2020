@@ -125,6 +125,14 @@ public class Lexer {
                         s += peek;
                         readch(br);
                     } while (Character.isLetter(peek) || Character.isDigit(peek) || peek == '_');
+                    
+                    //controllo underscore
+                    for (int i=0; i<s.length() && s.charAt(i) == '_'; i++){
+                        if (i == s.length()-1){
+                            System.err.println("Identifiers cant have only underscore");
+                            return null;
+                        }
+                    }
 
                     switch (s) {
                         case "cond":

@@ -62,6 +62,7 @@ public class Lexer {
                         while (!(peek == '\n' || peek == '\r')) {
                             readch(br);
                         }
+                        return lexical_scan(br);
                     //commento su più righe
                     case '*':
                         boolean commento = true;  
@@ -77,7 +78,8 @@ public class Lexer {
                             if (peek == (char)-1) {        
                                 return new Token(Tag.EOF);
                             }
-                        } 
+                        }
+                        return lexical_scan(br);
                     default:                   
                         return Token.div;
                 }

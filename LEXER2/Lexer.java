@@ -118,13 +118,13 @@ public class Lexer {
                 return new Token(Tag.EOF);
 
             default:
-                if (Character.isLetter(peek)) {
+                if (Character.isLetter(peek) || peek == '_') {
                 // ... gestire il caso degli identificatori e delle parole chiave //
                     String s = "";
                     do {
                         s += peek;
                         readch(br);
-                    } while (Character.isLetter(peek) || Character.isDigit(peek));
+                    } while (Character.isLetter(peek) || Character.isDigit(peek) || peek == '_');
 
                     switch (s) {
                         case "cond":
@@ -184,7 +184,7 @@ public class Lexer {
 		
     public static void main(String[] args) {
         Lexer lex = new Lexer();
-        String path = "/Users/lorenzo/Projects /LFT-2020/LEXER/test.txt"; 
+        String path = "/Users/lorenzo/Projects /LFT-2020/LEXER2/test.txt"; 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Token tok;

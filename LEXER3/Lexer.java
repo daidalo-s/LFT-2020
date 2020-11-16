@@ -192,7 +192,7 @@ public class Lexer {
 		
     public static void main(String[] args) {
         Lexer lex = new Lexer();
-        String path = "/Users/lorenzo/Projects /LFT-2020/LEXER2/test.txt"; 
+        String path = "/Users/lorenzo/Projects /LFT-2020/LEXER3/test.txt"; 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Token tok;

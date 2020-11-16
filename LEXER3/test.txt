@@ -13,7 +13,11 @@ d= 0
 
 
 aldinuccimerda_a23__bc
-_ ________ _
 
+5/3
 
+//ok
+
+questo è un commmento
+questo no
 

@@ -54,9 +54,33 @@ public class Lexer {
                 return Token.mult;
 
             case '/':
-                peek = ' ';
-                return Token.div;
-
+                readch(br);
+                switch (peek) {
+                    //commento singolo su una riga
+                    case '/':
+                        readch(br);
+                        while (!(peek == '\n' || peek == '\r')) {
+                            readch(br);
+                        }
+                    //commento su più righe
+                    case '*':
+                        boolean commento = true;  
+                        while (commento){
+                            if (peek == '*') {    
+                                readch(br);
+                                if (peek == '/') {   
+                                    commento = false;
+                                }
+                            } else {
+                              readch(br);
+                            }
+                            if (peek == (char)-1) {        
+                                return new Token(Tag.EOF);
+                            }
+                        } 
+                    default:                   
+                        return Token.div;
+                }
             case ';':
                 peek = ' ';
                 return Token.semicolon;   

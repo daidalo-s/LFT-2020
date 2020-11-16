@@ -1,4 +1,3 @@
-//ho visto un negro con le scarpe
 import java.io.*; 
 import java.util.*;
 
@@ -198,5 +197,3 @@ public class Lexer {
     }
 
 }
-
-//dioporco

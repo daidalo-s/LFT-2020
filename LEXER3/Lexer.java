@@ -59,30 +59,33 @@ public class Lexer {
                     //commento singolo su una riga
                     case '/':
                         readch(br);
-                        while (!(peek == '\n' || peek == '\r')) {
+                        //consuma i caratteri
+                        while (!(peek == '\n' || peek == '\r') && peek != (char)-1){
                             readch(br);
                         }
                         return lexical_scan(br);
                     //commento su più righe
-                    case '*':
-                        boolean commento = true;  
-                        while (commento){
+                    case '*': 
+                        while (peek != (char)-1){
                             if (peek == '*') {    
                                 readch(br);
-                                if (peek == '/') {   
-                                    commento = false;
+                                //commento chiuso quindi resetto
+                                if (peek == '/') {
+                                    peek = ' ';   
+                                    return lexical_scan(br);
                                 }
-                            } else {
-                              readch(br);
                             }
-                            if (peek == (char)-1) {        
-                                return new Token(Tag.EOF);
-                            }
+                            //se non trovo la chiusura continuo a leggere
+                            readch(br);
                         }
-                        return lexical_scan(br);
+                        //se arrivo a questo punto non esiste chiusura al commento
+                        System.err.println("Il commento non è chiuso");
+                            return null;
+                    //caso in cui sia solo una divisione
                     default:                   
                         return Token.div;
                 }
+
             case ';':
                 peek = ' ';
                 return Token.semicolon;   

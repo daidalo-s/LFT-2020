@@ -17,31 +17,33 @@ public class Parser {
     }
 
     void error(String s) {
-	throw new Error("near line " + lex.line + ": " + s);
+	   throw new Error("near line " + lex.line + ": " + s);
     }
 
     void match(int t) {
-	if (look.tag == t) {
-	    if (look.tag != Tag.EOF) move();
-	} else error("syntax error");
+	   if (look.tag == t) {
+	       if (look.tag != Tag.EOF) move();
+	   } else error("syntax error");
     }
 
     public void start() {
-	// ... completare ...
-	expr();
-	match(Tag.EOF);
-	// ... completare ...
+	   // ... completare ...
+        switch(look.tag) {
+	       expr();
+	       match(Tag.EOF);
+        }
+	   // ... completare ...
     }
 
     private void expr() {
-	// ... completare ...
+	   // ... completare ...
     }
 
     private void exprp() {
-	switch (look.tag) {
-	case '+':
-	// ... completare ...
-	}
+	   switch (look.tag) {
+	   case '+':
+	   // ... completare ...
+	   }
     }
 
     private void term() {

@@ -1,0 +1,39 @@
+//ok
+/* ok */
+d=300; print(* d t); cond when (> x y) then (= x 0) else (= y 0) while (conds<=printread) do conds = conds+1; x == y x==y
+a1 b2
+ciao12 while 123 = <=
+5 5 5 5 
+5
+0
+130000
+d= 0 
+5
+//notso ok
+aldinuccineicuori_a23__bc
+5/3
+//ok
+/* eskere */
+questo è un commmento
+questo no
+//ok commento su linea singola12_con_altr1_simboli &
+/* ok */
+d=300;
+print(* d t);
+cond when (> x y) then (= x 0) else (= y 0)
+while (conds<=printread) do conds = conds+1;
+x == y
+x==y
+a1 b2
+ciao12 while 123 = <= 
+245
+abcd1234bs
+123a456
+1234abcd
+//commento su linea singola12_con_altr1_simboli & /* 
+lol */
+a
+/* commentino
+
+ // uhuhu
+ */

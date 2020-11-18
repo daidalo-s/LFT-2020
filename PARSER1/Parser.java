@@ -131,7 +131,6 @@ public class Parser {
             case '+':
             case '-':
             case ')':
-
             case Tag.EOF:
                 break; 
 
@@ -161,7 +160,7 @@ public class Parser {
 		
     public static void main(String[] args) {
         Lexer lex = new Lexer();
-        String path = "/Users/lorenzo/Projects /LFT-2020/PARSERI1/testparser.txt"; // il percorso del file da leggere
+        String path = "/Users/lorenzo/Projects /LFT-2020/PARSER1/testparser.txt"; // il percorso del file da leggere
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Parser parser = new Parser(lex, br);

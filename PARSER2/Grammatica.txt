@@ -1,0 +1,85 @@
+Produzioni annullabili: <statilistp><whenlistp><exprlistp>
+
+FIRST
+FIRST(<prog>) = FIRST(<statlist>EOF) = FIRST(<statlist>) = {=,print,read,cond,while,{ }
+FIRST(<statlist>) = FIRST(<stat><statlistp>) = FIRST(<stat>) = {=,print,read,cond,while,{ }
+FIRST(<statlistp>) = {;}
+FIRST(<stat>) = {=,print,read,cond,while,{ }
+FIRST(<whenlist>) = FIRST(<whenitem>) = {when}
+FIRST(<whenlistp>) = FIRST(<whenitem>) = {when}
+FIRST(<whenitem>) = {when}
+FIRST(<bexpr>) = {RELOP}
+FIRST(<expr>) = {+,-,*,/,NUM,ID}
+FIRST(<exprlist>) = FIRST(<expr>) = {+,-,*,/,NUM,ID}
+
+FOLLOW
+$ ∈ FOLLOW(<prog>)
+{$} = FIRST(EOF) ⊆ FOLLOW(<statlist>)
+{;} = FIRST(<statlistp>) ⊆ FOLLOW(<stat>)
+FOLLOW(<statlist>) ⊆ FOLLOW(<stat>)
+FOLLOW(<statlist>) ⊆ FOLLOW(<statlistp>)
+FOLLOW(<statlistp>) ⊆ FOLLOW(<stat>)
+FOLLOW(<stat>) ⊆ FOLLOW(<expr>)
+{)} = FIRST( ) ) ⊆ FOLLOW(<exprlist>)
+{else} = FIRST(else <stat>) ⊆ FOLLOW(<whenlist>)
+{)} = FIRST( ) <stat>) ⊆ FOLLOW(<bexpr>)
+{ } } = FIRST( } ) ⊆ FOLLOW(<statlist>)
+{when} = FIRST(<whenlistp>) ⊆ FOLLOW(<whenitem>)
+FOLLOW(<whenlist>) ⊆ FOLLOW(<whenitem>)
+FOLLOW(<whenlist>) ⊆ FOLLOW(<whenlistp>)
+FOLLOW(<whenlistp>) ⊆ FOLLOW(<whenitem>)
+{)} = FIRST( ) do <stat>) ⊆ FOLLOW(<bexpr>)
+FOLLOW(<whenitem>) ⊆ FOLLOW(<stat>)
+FOLLOW(<bexpr>) ⊆ FOLLOW(<expr>)
+{)} = FIRST( ) ) ⊆ FOLLOW(<exprilist>)
+{+,-,*,/,NUM,ID} = FIRST(<exprlistp>) ⊆ FOLLOW(<expr>)
+FOLLOW(<exprlist>) ⊆ FOLLOW(<expr>)
+FOLLOW(<exprlist>) ⊆ FOLLOW(<exprlistp>)
+FOLLOW(<exprlistp>) ⊆ FOLLOW(<expr>)
+
+				FOLLOW	
+_____________|_______________
+<prog>		 |	$
+<statlist>	 |	$,}
+<statlistp>	 |	$,}
+<stat>		 |	$,},;,when,else
+<whenlist>	 |	else
+<whenlistp>	 |	else
+<whenitem>	 |	when, else
+<bexpr>		 |  )
+<expr>		 |	+,-,*,/,NUM,ID,;,$,},)
+<exprlist>   |	)
+<exprlistp>  |	)
+
+				A ->alfa					GUIDA(A -> alfa)
+________________________________________|__________________
+<prog> -> <statlist>EOF					|	=,print,read,cond,while,{ 
+<statlist> -> <stat><statlistp>			|	=,print,read,cond,while,{
+<statlistp> -> ; <stat> <statlistp>		|	;
+			-> epsilon					|	$,}
+<stat> -> = ID <expr>					|	=
+	   -> print (<exprlist>)			|	print
+	   -> read (ID)						|	read
+	   -> cond <whenlist> else <stat>	|	cond
+	   -> while (<bexpr>) <stat>		|	while
+	   -> {<statlist>}					|	{ 
+<whenlist> -> <whenitem> <whenlistp>	|	when
+<whenlistp> -> <whenitem><whenlistp>	|	when
+			-> epsilon					|	else
+<whenitem> -> when (<bexpr>) do <stat>	|	when
+<bexpr> -> RELOP <expr> <expr>			|	RELOP	
+<expr> -> + (<exprlist>)				|	+
+	   -> - <expr> <expr>				|	-
+	   -> * (<exprlist>)				|	*
+	   -> / <expr> <expr>				|	/
+	   -> NUM							|	NUM
+	   -> ID							|	ID
+<exprlist> -> <expr> <exprlistp>		|	+,-,*,/,NUM,ID
+<exprlistp> -> <expr> <exprlistp>		|	+,-,*,/,NUM,ID
+			-> epsilon	 				|	)
+
+
+
+
+
+

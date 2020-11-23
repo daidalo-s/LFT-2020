@@ -4,7 +4,7 @@ FIRST
 FIRST(<start>) = FIRST(<expr>EOF) = FIRST(<expr>) = {(,NUM}
 FIRST(<expr>) = FIRST(<term><exprp>) = FIRST(<term>) = {(,NUM}
 FIRST(<exprp>) = {+,-}
-FIRST(<term>) = FIRST(<fact>) = { ( }
+FIRST(<term>) = FIRST(<fact>) = {(, NUM}
 FIRST(<termp>) = {*,/}
 FIRST(<fact>) = FIRST((<expr>)) = {(,NUM}
 
@@ -22,7 +22,6 @@ FOLLOW(<term>) ⊆ FOLLOW(<termp>)
 FOLLOW(<termp>) ⊆ FOLLOW(<fact>)
 FIRST(<termp>) ⊆ FOLLOW(<fact>)
 FIRST( ) ) ⊆ FOLLOW(<expr>)
-FOLLOW(<fact>) ⊆ FOLLOW( ) )
 _______________________________
 <start>		|	$
 <expr>		|	),$

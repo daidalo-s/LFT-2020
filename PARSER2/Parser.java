@@ -240,6 +240,9 @@ public class Parser {
                 match(Tag.DO);
                 stat();
                 break;
+
+            default:
+                error("Error found in whenitem method");
         }
     }
 	

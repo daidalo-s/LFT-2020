@@ -42,6 +42,9 @@ public class Parser {
         switch(look.tag) {
             
             case '(':
+               expr();
+               match(Tag.EOF);
+               break;
             
             case Tag.NUM:
 	           expr();
@@ -58,6 +61,9 @@ public class Parser {
         switch(look.tag) {
             
             case '(':
+                term();
+                exprp();
+                break;
 
             case Tag.NUM:
                 term();
@@ -86,13 +92,14 @@ public class Parser {
                 break; 
 
             case ')':
+                break;
 
             case Tag.EOF:
                 break;
 
             default:
                 error("Error found in exprp method");
-            }
+        }
     }
 
     private void term() {
@@ -100,6 +107,9 @@ public class Parser {
         switch(look.tag) {
             
             case '(':
+                fact();
+                termp();
+                break;
 
             case Tag.NUM:
                 fact();
@@ -129,8 +139,14 @@ public class Parser {
                 break;
 
             case '+':
+                break;
+
             case '-':
+                break; 
+
             case ')':
+                break;
+                 
             case Tag.EOF:
                 break; 
 

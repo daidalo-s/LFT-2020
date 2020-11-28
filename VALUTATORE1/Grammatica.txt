@@ -1,0 +1,46 @@
+Produzioni annullabili: <exprp> <termp>
+
+FIRST
+FIRST(<start>) = FIRST(<expr>EOF) = FIRST(<expr>) = {(,NUM}
+FIRST(<expr>) = FIRST(<term><exprp>) = FIRST(<term>) = {(,NUM}
+FIRST(<exprp>) = {+,-}
+FIRST(<term>) = FIRST(<fact>) = {(, NUM}
+FIRST(<termp>) = {*,/}
+FIRST(<fact>) = FIRST((<expr>)) = {(,NUM}
+
+FOLLOW
+$ ⊆ FOLLOW(<start>)
+FIRST(EOF) ⊆ FOLLOW(<expr>)
+FOLLOW(<start>) ⊆ FOLLOW(EOF)
+FIRST(<exprp>) ⊆ FOLLOW(<term>)
+FOLLOW(<expr>) ⊆ FOLLOW(<term>)
+FOLLOW(<expr>) ⊆ FOLLOW(<exprp>)
+FOLLOW(<exprp>) ⊆ FOLLOW(<term>)
+FIRST(<exprp>) ⊆ FOLLOW(<term>)
+FOLLOW(<term>) ⊆ FOLLOW(<fact>)
+FOLLOW(<term>) ⊆ FOLLOW(<termp>)
+FOLLOW(<termp>) ⊆ FOLLOW(<fact>)
+FIRST(<termp>) ⊆ FOLLOW(<fact>)
+FIRST( ) ) ⊆ FOLLOW(<expr>)
+_______________________________
+<start>		|	$
+<expr>		|	),$
+<exprp>		|	),$
+<term>		|	+,-,$,)
+<termp>		|	),+,-,$
+<fact>		|	*,/,+,-,$
+
+
+GUIDA
+_______A -> alfa____________|________GUIDA(A->alfa)________
+<start> -> <expr>EOF		|		(,NUM
+<expr> -> <term><exprp>		|		(,NUM
+<exprp> -> +<term><exprp>	|		+
+		-> -<term><exprp>	|		-
+		-> epsilon			|		),$
+<term> -> <fact><termp>		|		(,NUM
+<termp> -> *<fact><termp>	|		*
+		-> /<fact><temrp>	|		/
+		-> epsilon			|		),+,-,$
+<fact> -> (<expr>)			|		( 
+	   -> NUM				|		NUM

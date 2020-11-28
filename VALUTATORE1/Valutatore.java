@@ -42,58 +42,184 @@ public class Valutatore {
     <fact> ::= (<expr>) {fact.val = expr.val} | NUM {fact.val = NUM.value}
     */
     public void start() { 
-	    int expr_val;
+	    int expr_val = 0;
+        /*
+        <start> ::= <expr>EOF {print(expr.val)}
+        */
+        switch(look.tag) {
+            
+            case '(':
+               expr_val = expr();
+               match(Tag.EOF);
+               System.out.println(expr_val);
+               break;
+            
+            case Tag.NUM:
+               expr_val = expr();
+               match(Tag.EOF);
+               System.out.println(expr_val);
+               break;
 
-    	// ... completare ...
-
-    	expr_val = expr();
-	    match(Tag.EOF);
-
-        System.out.println(expr_val);
-
-	    // ... completare ...
+            default:
+                error("Error found in start method"); 
+        }
     }
 
     private int expr() { 
-	    int term_val, exprp_val;
+	    int term_val, exprp_val = 0;
+        /*
+        <expr> ::= <term> {exprp.i = term.val}
+               <exprp> {expr.val = exprp.val}
+        */
+        switch(look.tag) {
+            
+            case '(':
+                term_val = term();
+                exprp_val = exprp(term_val);
+                break;
 
-	    // ... completare ...
+            case Tag.NUM:
+                term_val = term();
+                exprp_val = exprp(term_val);
+                break;
 
-    	term_val = term();
-	    exprp_val = exprp(term_val);
+            default: 
+                error("Error found in expr method");
+        }
 
-	    // ... completare ...
-	    return exprp_val;
+        return exprp_val;
     }
 
     private int exprp(int exprp_i) {
-	    int term_val, exprp_val;
-	    switch (look.tag) {
-	        case '+':
-                match('+');
+	    int term_val, exprp_val = 0;
+        /*
+        <exprp> ::= +<term> {exprp1.i = exprp.i+term.val} <exprp1> {exprp.val = exprp1.val}
+                -<term> {exprp1.i = exprp.i-term.val} <exprp1> {exprp.val = exprp1.val}
+                eps {exprp.val = exprp.i}
+        */
+        switch (look.tag) {
+            
+            case '+' : 
+                match(Token.plus.tag);
                 term_val = term();
                 exprp_val = exprp(exprp_i + term_val);
                 break;
 
-    	// ... completare ...
-	    }
+            case '-':
+                match(Token.minus.tag);
+                term_val = term();
+                exprp_val = exprp(exprp_i - term_val);
+                break; 
+
+            case ')':
+                exprp_val = exprp_i;
+                break;
+
+            case Tag.EOF:
+                exprp_val = exprp_i;
+                break;
+
+            default:
+                error("Error found in exprp method");
+        }
+	    return exprp_val;
     }
 
-    private int term() { 
-	   // ... completare ...
+    private int term() {
+        int fact_val, termp_val = 0;
+        /*
+        <term> ::= <fact> {termp.i = fact.val} <termp> {term.val = termp.val}
+        */
+        switch(look.tag) {
+            
+            case '(':
+                fact_val = fact();
+                termp_val = termp(fact_val);
+                break;
+
+            case Tag.NUM:
+                fact_val = fact();
+                termp_val = termp(fact_val);
+                break;
+
+            default:
+                error("Error found in term method");
+        }
+        return termp_val;
     }
     
-    private int termp(int termp_i) { 
-	   // ... completare ...
+    private int termp(int termp_i) {
+        int fact_val, termp_val = 0;
+        /*
+         <termp> ::= *<fact> {termp1.i = termp.i*fact.val} <termp1> {termp.val = termp1.val}
+                /<fact> {termp1.i = termp.i/fact.val} <termp1> {termp.val = termp1.val}
+                eps {termp.val = termp.i}
+        */
+        switch(look.tag){
+
+            case '*':
+                match(Token.mult.tag);
+                fact_val = fact();
+                termp_val = termp(termp_i * fact_val);
+                break;
+
+            case '/':
+                match(Token.div.tag);
+                fact_val = fact();
+                termp_val = termp(termp_i / fact_val);
+                break;
+
+            case '+':
+                termp_val = termp_i;
+                break;
+
+            case '-':
+                termp_val = termp_i;
+                break; 
+
+            case ')':
+                termp_val = termp_i;
+                break;
+                 
+            case Tag.EOF:
+                termp_val = termp_i;
+                break; 
+
+            default:
+                error("Error found in termp method");
+        }
+
+        return termp_val;
     }
     
-    private int fact() { 
-	   // ... completare ...
+    private int fact() {
+        int fact_val = 0;
+        /*
+        <fact> ::= (<expr>) {fact.val = expr.val} | NUM {fact.val = NUM.value}
+        */
+        switch(look.tag){
+
+            case '(':
+                match(Token.lpt.tag);
+                fact_val = expr();
+                match(Token.rpt.tag);
+                break;
+
+            case Tag.NUM:
+                fact_val = Integer.parseInt(((NumberTok)look).number);
+                match(Tag.NUM);
+                break;
+
+            default:
+                error("Error found in fact method");
+        } 
+        
+        return fact_val;	  
     }
 
     public static void main(String[] args) {
         Lexer lex = new Lexer();
-        String path = "...path..."; // il percorso del file da leggere
+        String path = "/Users/lorenzo/Projects /LFT-2020/VALUTATORE1/testvalutatore.txt"; 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Valutatore valutatore = new Valutatore(lex, br);

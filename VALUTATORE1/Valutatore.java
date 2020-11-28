@@ -188,7 +188,6 @@ public class Valutatore {
             default:
                 error("Error found in termp method");
         }
-
         return termp_val;
     }
     
@@ -212,8 +211,7 @@ public class Valutatore {
 
             default:
                 error("Error found in fact method");
-        } 
-        
+        }  
         return fact_val;	  
     }
 

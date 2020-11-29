@@ -86,7 +86,7 @@ public class Valutatore {
             default: 
                 error("Error found in expr method");
         }
-        
+
         return exprp_val;
     }
 
@@ -144,7 +144,7 @@ public class Valutatore {
 
             default:
                 error("Error found in term method");
-        }
+        } 
         return termp_val;
     }
     

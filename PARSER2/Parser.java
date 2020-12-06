@@ -150,7 +150,7 @@ public class Parser {
                 expr();
                 break;
             //print (<exprlist>)    
-            case Tag.PRINT:
+            case Tag.PRINT: 
                 match(Tag.PRINT);
                 match(Token.lpt.tag);
                 exprlist();

@@ -1,0 +1,55 @@
+//funziona
+{ 
+	= x 10;
+	= y 0;
+	while (> x 0) {
+		= y + (x y);
+		= x - x 1 
+	}
+}
+
+/*******************************/
+//funziona
+= x 10;
+= y 20;
+= z 30;
+print(+(x *(y z)))
+
+/*******************************/
+//funziona
+read(a); 
+print(+(a 1))
+
+/****/
+= x 10;
+= y 5;
+= z 3;
+cond when(> x 0) do {
+	print(x);
+	print(y)
+} when(> y 0) do print(y)
+	else print(z)
+
+/*******/
+
+= x 10;
+= y 5;
+= z 3;
+cond when(> x 0) do {print(x); print(y)} 
+	 else print(z)
+
+
+ 	= x 10;
+	while (> x 0) {
+	 = x - x 1; 
+	 print(x) 
+	};
+
+= a_1adolf 10;
+	= b_hitler 5;
+	= c_benito 3;
+	cond when(> a_1adolf 0) do {
+		print(a_1adolf);
+		print(b_hitler)
+	} when(> b_hitler 0) do print(b_hitler)
+	else print(c_benito)

@@ -121,10 +121,8 @@ public class Translator {
             
             case Tag.COND:
                 match(Tag.COND);
-                //int whenlist_true = code.newLabel();
                 int whenlist_false = code.newLabel();
                 int stat1_next = lnext_prog;
-                //System.out.println(whenlist_true);
                 int stat2_next = lnext_prog;
                 whenlist(whenlist_false, stat1_next);
                 match(Tag.ELSE);
@@ -185,14 +183,9 @@ public class Translator {
         switch (look.tag) {
             
             case Tag.WHEN:
-                //non sappiamo a cosa serva
                 int whenitem_next = code.newLabel();
                 whenitem(stat1_next, whenitem_next);
-                //code.emitLabel(whenlist_false);
-                //code.emit(OpCode.GOto, whenlist_false); //
                 code.emitLabel(whenitem_next);
-                //int nuovalabel = code.newLabel();
-                //code.emitLabel(nuovalabel);
                 whenlistp(stat1_next, whenitem_next);
                 break;
 
@@ -215,7 +208,6 @@ public class Translator {
                 code.emitLabel(bexpr_true);
                 System.out.println(stat1_next);
                 stat(stat1_next);
-                //System.out.println("DIo cane");
                 code.emit(OpCode.GOto, stat1_next);
                 break;
                 
@@ -232,8 +224,6 @@ public class Translator {
                 int whenlistp_next = code.newLabel();
                 whenitem(stat1_next, whenlistp_next);
                 code.emitLabel(whenlistp_next);
-                //int nuovalabel = code.newLabel();
-                //code.emitLabel(nuovalabel);
                 whenlistp(stat1_next, whenitem_next);
                 break;
 
@@ -350,7 +340,7 @@ public class Translator {
                         //ci devo mettere un errore se non ho già la variabile
                         error("Variabile non presente in memoria o non inizializzata");
                     }     
-                match(Tag.ID); //oppure move?
+                match(Tag.ID);
                 code.emit(OpCode.iload, id_addr);
                 break;
 
@@ -389,10 +379,7 @@ public class Translator {
                 exprlistp();
                 break;
 
-            //volendo posso riabilitarli pensando a quale etichetta
-            //passare
             case ')':
-                //code.emit(OpCode.GOto, lnext_expr);
                 break;
 
             default: 

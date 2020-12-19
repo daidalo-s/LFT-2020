@@ -403,7 +403,7 @@ public class Translator {
 
     public static void main(String[] args){
         Lexer lex = new Lexer();
-        String path = "/Users/lorenzo/Desktop/TRANSLATOR/A.lft"; //path del file 
+        String path = "/Users/lorenzo/Projects /LFT-2020/TRANSLATOR/A.lft"; //path del file 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             Translator translator = new Translator(lex, br);

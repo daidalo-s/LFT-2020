@@ -139,7 +139,6 @@ public class Lexer {
                     peek = ' ';
                     return Word.eq;
                 } else {
-                    //peek = ' ';
                     return Token.assign;
                 }
 

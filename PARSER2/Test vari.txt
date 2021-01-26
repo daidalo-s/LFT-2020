@@ -30,7 +30,7 @@ cond
   cond when (> y z) do print(y) else print(z)
 /*******************************************/
 
-/*************NON FUNZIONA*****************/
+/***************** FUNZIONA*****************/
 {
 	= x 10;
 	= y 0;
@@ -52,3 +52,13 @@ print(+(a 1))
 = z 30;
 print(+(x *(y z)))
 /*******************************************/
+
+read(x);
+read(y);
+print(1 +(2 3 4));
+cond
+	when (> x y) do print(x) else print(y);
+while (> x 0) {
+	= x - x 1;
+	print(x)
+}

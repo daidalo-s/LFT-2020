@@ -1,16 +1,9 @@
-{
-= x 10;
-	while (> x 0) {
-	 = x - x 1; 
-	 print(x) 
-	};
-
-= a_1adolf 10;
-	= b_hitler 5;
-	= c_benito 3;
-	cond when(> a_1adolf 0) do {
-		print(a_1adolf);
-		print(b_hitler)
-	} when(> b_hitler 0) do print(b_hitler)
-	else print(c_benito)
+read(x);
+read(y);
+print(1 +(2 3 4));
+cond
+    when (> x y) do print(x) else print(y);
+while (> x 0) {
+    = x - x 1;
+    print(x)
 }

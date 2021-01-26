@@ -206,7 +206,6 @@ public class Translator {
                 match(Token.rpt.tag);
                 match(Tag.DO);
                 code.emitLabel(bexpr_true);
-                System.out.println(stat1_next);
                 stat(stat1_next);
                 code.emit(OpCode.GOto, stat1_next);
                 break;

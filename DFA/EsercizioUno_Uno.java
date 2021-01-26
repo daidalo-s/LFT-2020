@@ -14,9 +14,11 @@ public class EsercizioUno_Uno {
 	while (state >= 0 && i < s.length()) {
 	    final char ch = s.charAt(i++);
 
-	    switch (state) {
+	    switch(state) {
 	    case 0:
-		if (ch == '0' || ch == '1')
+		if (ch == '0')
+		    state = 2;
+		else if (ch == '1')
 		    state = 1;
 		else
 		    state = -1;
@@ -24,7 +26,7 @@ public class EsercizioUno_Uno {
 
 	    case 1:
 		if (ch == '0')
-		    state = 0;
+		    state = 2;
 		else if (ch == '1')
 		    state = 1;
 		else
@@ -41,14 +43,23 @@ public class EsercizioUno_Uno {
 		break;
 
 	    case 3:
+		if (ch == '0')
+		    state = 4;
+		else if (ch == '1')
+			state = 1;
+		else
+		    state = -1;
+		break;
+	    
+		case 4:
 		if (ch == '0' || ch == '1')
-		    state = 3;
+		    state = 4;
 		else
 		    state = -1;
 		break;
 	    }
 	}
-	return state == 1 || state == 2;
+	return state == 1 || state == 2 || state == 3;
     }
 
     public static void main(String[] args)

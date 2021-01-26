@@ -10,10 +10,9 @@ ciao12 while 123 = <=
 d= 0 
 5
 //notso ok
-aldinuccineicuori_a23__bc
 5/3
 //ok
-/* eskere */
+/* ciao */
 questo è un commmento
 questo no
 //ok commento su linea singola12_con_altr1_simboli &

@@ -1,3 +1,0 @@
-Lorenzo
-"/Users/lorenzo/Projects /LFT-2020/LEXER3/test.txt";
-Marco

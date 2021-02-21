@@ -39,9 +39,9 @@ public class Translator {
             case Tag.COND:
             case Tag.WHILE:
             case '{':
-                int lnext_prog = code.newLabel();
-                statlist(lnext_prog); 
-                code.emitLabel(lnext_prog);
+                int prog_next = code.newLabel();
+                statlist();
+                code.emitLabel(prog_next); 
                 match(Tag.EOF);
                 try {
                    code.toJasmin();
@@ -56,7 +56,7 @@ public class Translator {
         }
     }
 
-    public void statlist(int lnext_prog) {
+    public void statlist() {
 
         switch (look.tag) {
             case '=':
@@ -65,10 +65,8 @@ public class Translator {
             case Tag.COND:
             case Tag.WHILE:
             case '{':
-                int stat_next = code.newLabel();
-                stat(stat_next);
-                code.emitLabel(stat_next);
-                statlistp(lnext_prog);
+                stat();
+                statlistp();
                 break;
 
             default: 
@@ -77,7 +75,7 @@ public class Translator {
 
     }
 
-    public void stat(int lnext_prog) {
+    public void stat() {
         switch(look.tag) {
             case '=':
                 match(Token.assign.tag);
@@ -96,7 +94,8 @@ public class Translator {
             case Tag.PRINT:
                 match(Tag.PRINT);
                 match(Token.lpt.tag);
-                exprlist();
+                // 0 indica l'istruzione print
+                exprlist(0);
                 code.emit(OpCode.invokestatic,1);
                 match(Token.rpt.tag);
                 break;
@@ -121,12 +120,12 @@ public class Translator {
             
             case Tag.COND:
                 match(Tag.COND);
-                int whenlist_false = code.newLabel();
-                int stat1_next = lnext_prog;
-                int stat2_next = lnext_prog;
-                whenlist(whenlist_false, stat1_next);
+                int cond_next = code.newLabel();
+                int whenlist_true = code.newLabel();
+                whenlist(whenlist_true, cond_next);
                 match(Tag.ELSE);
-                stat(stat2_next);
+                stat();
+                code.emitLabel(cond_next);
                 break;
             
             case Tag.WHILE:
@@ -135,19 +134,18 @@ public class Translator {
                 int inizio = code.newLabel();
                 code.emitLabel(inizio);
                 int bexpr_true = code.newLabel();
-                int bexpr_false = lnext_prog;
+                int bexpr_false = code.newLabel();
                 bexpr(bexpr_true, bexpr_false);
                 match(Token.rpt.tag);
                 code.emitLabel(bexpr_true);
-                int stat_next = inizio;
-                stat(stat_next);
-                code.emitLabel(code.newLabel());
-                code.emit(OpCode.GOto, stat_next);
+                stat();
+                code.emit(OpCode.GOto, inizio);
+                code.emitLabel(bexpr_false);
                 break;
             
             case '{':
                 match(Token.lpg.tag);
-                statlist(lnext_prog); 
+                statlist(); 
                 match(Token.rpg.tag);
                 break;
 
@@ -156,15 +154,13 @@ public class Translator {
         }
     }
 
-    public void statlistp (int lnext_prog) {
+    public void statlistp () {
 
         switch (look.tag) {
             case ';':
                 match(Token.semicolon.tag);
-                int statlistp_next = code.newLabel();
-                stat(statlistp_next);
-                code.emitLabel(statlistp_next);
-                statlistp(lnext_prog);
+                stat();
+                statlistp();
                 break;
   
             case Tag.EOF:
@@ -178,15 +174,14 @@ public class Translator {
         }
     }
  
-    public void whenlist (int whenlist_false, int stat1_next) {
+    public void whenlist (int whenlist_true, int cond_next) {
         
         switch (look.tag) {
             
             case Tag.WHEN:
-                int whenitem_next = code.newLabel();
-                whenitem(stat1_next, whenitem_next);
-                code.emitLabel(whenitem_next);
-                whenlistp(stat1_next, whenitem_next);
+                int whenlist_false = code.newLabel();
+                whenitem(whenlist_true, whenlist_false, cond_next);
+                whenlistp(cond_next);
                 break;
 
             default:
@@ -194,20 +189,20 @@ public class Translator {
         }
     }
 
-    public void whenitem (int stat1_next, int whenitem_next) { 
+    public void whenitem (int whenlist_true, int whenlist_false, int cond_next) { 
     
         switch (look.tag) {
 
             case Tag.WHEN:
                 match(Tag.WHEN);
                 match(Token.lpt.tag);
-                int bexpr_true = code.newLabel();
-                bexpr(bexpr_true, whenitem_next);
+                bexpr(whenlist_true, whenlist_false);
                 match(Token.rpt.tag);
                 match(Tag.DO);
-                code.emitLabel(bexpr_true);
-                stat(stat1_next);
-                code.emit(OpCode.GOto, stat1_next);
+                code.emitLabel(whenlist_true);
+                stat();
+                code.emit(OpCode.GOto, cond_next);
+                code.emitLabel(whenlist_false);
                 break;
                 
             default:
@@ -215,15 +210,15 @@ public class Translator {
         }
     }
 
-     public void whenlistp (int stat1_next, int whenitem_next) {
+     public void whenlistp (int cond_next) {
     
         switch(look.tag) {
 
             case Tag.WHEN:
-                int whenlistp_next = code.newLabel();
-                whenitem(stat1_next, whenlistp_next);
-                code.emitLabel(whenlistp_next);
-                whenlistp(stat1_next, whenitem_next);
+                int nuovo_true = code.newLabel();
+                int nuovo_false = code.newLabel();
+                whenitem(nuovo_true, nuovo_false, cond_next);
+                whenlistp(cond_next);
                 break;
 
             case Tag.ELSE:
@@ -233,7 +228,6 @@ public class Translator {
                 error("Errore in whenlistp");
         }
     }
-
     public void bexpr (int bexpr_true, int bexpr_false) {
         switch (look.tag) {
             
@@ -297,10 +291,10 @@ public class Translator {
     private void expr() {
         switch(look.tag) {
             case '+':
+                //qualcosa che indichi la somma
                 match(Token.plus.tag);
                 match(Token.lpt.tag);
-                exprlist();
-                code.emit(OpCode.iadd);
+                exprlist(1);
                 match(Token.rpt.tag);
                 break;
 
@@ -312,10 +306,10 @@ public class Translator {
                 break;
 
             case '*':
+                //qualcosa che indichi la moltiplicazione
                 match(Token.mult.tag);
                 match(Token.lpt.tag);
-                exprlist();
-                code.emit(OpCode.imul);
+                exprlist(2);
                 match(Token.rpt.tag);
                 break;
 
@@ -349,7 +343,7 @@ public class Translator {
     }
 
 
-    public void exprlist () {
+    public void exprlist (int op) {
         switch (look.tag) {
             case '+':
             case '-':
@@ -358,7 +352,7 @@ public class Translator {
             case Tag.NUM:
             case Tag.ID:
                 expr();
-                exprlistp();
+                exprlistp(op);
                 break;
 
             default: 
@@ -366,7 +360,7 @@ public class Translator {
         }
     }
 
-    public void exprlistp () {
+    public void exprlistp (int op) {
         switch (look.tag) {
             case '+':
             case '-':
@@ -374,8 +368,24 @@ public class Translator {
             case '/':
             case Tag.NUM:
             case Tag.ID:
+                if (op == 0) {
+                    code.emit(OpCode.invokestatic, 1);
+                }
                 expr();
-                exprlistp();
+                // qui
+                switch (op){
+                    case 0:
+                        break;
+                    case 1:
+                        code.emit(OpCode.iadd);
+                        break;
+                    case 2:
+                        code.emit(OpCode.imul);
+                        break;
+                    default:
+                        error("Boh");
+                }
+                exprlistp(op);
                 break;
 
             case ')':

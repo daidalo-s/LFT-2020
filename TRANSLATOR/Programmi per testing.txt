@@ -45,14 +45,14 @@ cond when(> x 0) do {print(x); print(y)}
 	 print(x) 
 	};
 
-= a_1adolf 10;
-	= b_hitler 5;
-	= c_benito 3;
-	cond when(> a_1adolf 0) do {
-		print(a_1adolf);
-		print(b_hitler)
-	} when(> b_hitler 0) do print(b_hitler)
-	else print(c_benito)
+= a 10;
+	= b 5;
+	= c 3;
+	cond when(> a 0) do {
+		print(a);
+		print(b)
+	} when(> b 0) do print(b)
+	else print(c)
 
 /********/
 read(x);
@@ -71,3 +71,59 @@ while (> x 0 ){
 print ( - x +(/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))));
 print(+(+(+(+(+(+(+(*(6)))))))))
 }	
+
+read(x);
+read(y);
+print(+ (3 4));
+cond
+    when (> x y) do print(x)  
+    when (> y x) do print(y)
+else 
+    print(y);
+while (> x 0) {
+    = x - x 1;
+    print(x)
+}
+
+read(x);
+read(y);
+read(z);
+read(j);
+
+cond 
+  when (> x y ) do 
+cond when ( > x z) do print(x) else cond when ( > z j) do print(y) else print(z)
+else 
+cond when (> y z ) do print (2)  else print (j);
+
+while (> x 0 ){
+= x * (/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))) ;
+print (x)
+}	
+
+/***********/
+read(x);
+read(y);
+read(z);
+read(j);
+
+cond
+	when (> x y ) do 
+		cond when ( > x z) do 
+			print(x * (/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))) ) 
+		else 
+			cond when ( > z j) do 
+				print( * (/2 2 *( / 3 3 * ( / 3 3 ))) * (/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))) ) 
+			else 
+				print(z)
+	else 
+		cond when (> y z ) do 
+			print (+(+(+(+(+(2))))))  
+		else 
+			print (j);
+
+while (> x 0 ){
+	= x * (/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))) ;
+	print ( - x +(/ 2 2 +(*(+( - 2 54  - 2 4 2*( - 9 3+(*(2*(+(x  / 2 3 * (y 3 4)))))))))));
+	print(+(+(+(+(+(+(+(*(6)))))))))
+}

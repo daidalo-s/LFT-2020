@@ -11,20 +11,34 @@ Progetto per il corso di Linguaggi Formali e Traduttori dell'anno accademico 202
 
 ## Grammatica
 prog ::= statlist EOF
+
 statlist ::= stat statlistp
+
 statilistp ::= ; stat statlistp | eps
+
 stat ::= = ID expr
+
          print (exprlist)
+
          read (ID)
+         
          cond whenlist esle stat
+         
          while (bexpr) stat
+         
          {statlist}
 whenlist ::= whenitem whenlistp
+
 whenlistp ::= whenitem whenlistp | eps
+
 whenitem ::= when (bexpr) do stat
+
 bexpr ::= RELOP expr expr
+
 expr ::= + (exprlist) | - expr expr | * (exprlist) | / expr expr | NUM | ID
+
 exprlist ::= expr exprlistp
+
 exprlistp ::= expr exprlistp | eps
 
 ## Utilizzo

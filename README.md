@@ -51,3 +51,11 @@ La parte di utilizzo tratta unicamente il caso della traduzione.
 ```bash
 java Translator
 ```
+3. A questo punto viene generato il file Output.j. Va convertito in un file eseguibile dalla jvm
+```bash
+java -jar jasmin.jar Output.j
+```
+4. Abbiamo ottenuto il file .class eseguibile
+```bash
+java Output
+```

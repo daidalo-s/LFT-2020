@@ -27,6 +27,7 @@ stat ::= = ID expr
          while (bexpr) stat
          
          {statlist}
+         
 whenlist ::= whenitem whenlistp
 
 whenlistp ::= whenitem whenlistp | eps

@@ -10,6 +10,7 @@ Progetto per il corso di Linguaggi Formali e Traduttori dell'anno accademico 202
 5. TRANSLATOR: traduttore vero e proprio, prende in input un programma inserito nel file A.lft (secritto seguendo la sintassi sotto riportata) e lo trasforma in un programma eseguibile dalla JVM appoggiandosi a jasmin
 
 ## Grammatica
+```bash
 prog ::= statlist EOF
 
 statlist ::= stat statlistp
@@ -27,7 +28,7 @@ stat ::= = ID expr
          while (bexpr) stat
          
          {statlist}
-         
+
 whenlist ::= whenitem whenlistp
 
 whenlistp ::= whenitem whenlistp | eps
@@ -41,6 +42,7 @@ expr ::= + (exprlist) | - expr expr | * (exprlist) | / expr expr | NUM | ID
 exprlist ::= expr exprlistp
 
 exprlistp ::= expr exprlistp | eps
+```
 
 ## Utilizzo
 La parte di utilizzo tratta unicamente il caso della traduzione. 

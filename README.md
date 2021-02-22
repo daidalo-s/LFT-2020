@@ -1,15 +1,15 @@
 # LFT-2020
-1_Installazione
-Scarica git da https://git-scm.com/downloads (man mano che installi non cambiare le cose che ti propone, così siamo sicuri che ti installi anche la bash)
+Progetto per il corso di Linguaggi Formali e Traduttori dell'anno accademico 2020-2021.
 
-2_Inizializzazione
-Apri Git Bash che dovrebbe installarti l'installer al passo precedente.
-Naviga (con i soliti comandi cd/ls) fino a dove vuoi copiare il repo.
-Quando sei arrivato, apri il repo da browser, clicca sul tasto verde Code, copia il link che ti esce
-Torna sul terminale di prima e digita git clone -link che hai copiato-
+## Struttura
+È diviso in più parti:
+1. DFA: contiene l'implementazione dei 10 DFA assegnati
+2. LEXER 1/2/3: varie iterazioni dell'analizzatore lessicale dove ogni versione successiva aggiunge nuove funzionalitá 
+3. PARSER 1/2:  due iterazioni del parsificatore, prende un programma in input e lo scompone nei vari token
+4. VALUTATORE: valuta espressioni aritmetiche
+5. TRANSLATOR: traduttore vero e proprio, prende in input un programma inserito nel file A.lft (secritto seguendo la sintassi sotto riportata) e lo trasforma in un programma eseguibile dalla JVM appoggiandosi a jasmin
 
-3_Uso
-Un po' di comandi utili:
-git status ti mostra le modifiche che hai fatto ai file
-git pull ti fa scaricare le modifiche dal repo
-Se fai delle modifiche prima dai un git status per vedere i file che hai modificato, poi con git add aggiungi i file moidificati al commit, poi dai git commit -m "Messaggio in cui spieghi le modifiche" e infine pushi con git push 
+## Grammatica
+<prog> ::= <statlist>EOF
+
+## Utilizzo

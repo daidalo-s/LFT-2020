@@ -228,6 +228,7 @@ public class Translator {
                 error("Errore in whenlistp");
         }
     }
+
     public void bexpr (int bexpr_true, int bexpr_false) {
         switch (look.tag) {
             
@@ -280,7 +281,6 @@ public class Translator {
                     default:
                         error("Errore in bexpr, il simbolo non corrisponde a nulla");            
                 }
-
                 break;
 
             default:
@@ -330,9 +330,9 @@ public class Translator {
                 //riconoscimento degli ID
                 int id_addr = st.lookupAddress(((Word)look).lexeme);
                 if (id_addr == -1) {
-                        //ci devo mettere un errore se non ho già la variabile
-                        error("Variabile non presente in memoria o non inizializzata");
-                    }     
+                    //ci devo mettere un errore se non ho già la variabile
+                    error("Variabile non presente in memoria o non inizializzata");
+                }     
                 match(Tag.ID);
                 code.emit(OpCode.iload, id_addr);
                 break;
@@ -341,7 +341,6 @@ public class Translator {
                 error("Errore in expr");
         }
     }
-
 
     public void exprlist (int op) {
         switch (look.tag) {
@@ -372,9 +371,9 @@ public class Translator {
                     code.emit(OpCode.invokestatic, 1);
                 }
                 expr();
-                // qui
                 switch (op){
                     case 0:
+                        code.emit(OpCode.invokestatic, 1);
                         break;
                     case 1:
                         code.emit(OpCode.iadd);

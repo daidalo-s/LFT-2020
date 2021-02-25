@@ -373,7 +373,6 @@ public class Translator {
                 expr();
                 switch (op){
                     case 0:
-                        code.emit(OpCode.invokestatic, 1);
                         break;
                     case 1:
                         code.emit(OpCode.iadd);

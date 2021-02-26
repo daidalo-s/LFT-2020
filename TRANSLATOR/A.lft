@@ -1,12 +1,7 @@
-read(_x1);
-read(y_2);
-while(> _x1 0)
-	cond 	
-		when(> _x1 y_2) do 
-		{= _x1 - _x1 y_2; print(_x1)}
-		when (== _x1 y_2) do 
-		{= _x1 - _x1 1; print(100)}
-	else 
-		{= _x1 - _x1 1; print(_x1)};
-print(_x1 *(2 3 4))
-//commento
+/* comment ***/
+read(x);
+/*cond when (&& (> x 10) (< x 20)) do print(x *(x x) *(x x x)) else print(0);***/
+while (> x 0) 
+    cond     when (> x 10) do {= x - x 2; print(x)}
+        else {= x - x 1; print(x)};
+print(x +(2 3 4 ))//commento

@@ -66,14 +66,14 @@ public class Lexer {
                         return lexical_scan(br);
                     //commento su più righe
                     case '*': 
-                        while (peek != (char)-1){
+                        while (peek != (char) - 1){
                             if (peek == '*') {    
                                 readch(br);
-                                //commento chiuso quindi resetto
-                                if (peek == '/') {
-                                    peek = ' ';   
-                                    return lexical_scan(br);
-                                }
+                            }
+                            //commento chiuso quindi resetto
+                            if (peek == '/') {
+                                peek = ' ';   
+                                return lexical_scan(br);
                             }
                             //se non trovo la chiusura continuo a leggere
                             readch(br);
